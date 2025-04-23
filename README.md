@@ -1,10 +1,3 @@
-# -Nashville-Housing-Data-Cleanup-SQL-Project-
-A T-SQL pipeline to clean, standardize, and validate Nashville residential property sales data—preparing it for analysis or downstream modeling.
-
-
-
-Here’s a professional, Git-Hub-ready project name, short description, and a detailed README for your Nashville Housing Data Cleaning project. Feel free to adjust any section to better reflect your workflow or style.
-
 ---
 
 **📌 Project Name**  
@@ -159,7 +152,7 @@ After cleaning, the dataset is:
 
 **Abdelrahman Said Mohamed**  
 Data Science & Analytics Enthusiast  
-- LinkedIn: [Abdelrahman_Said]([https://www.linkedin.com/in/…](https://www.linkedin.com/in/abdelrahman-said-mohamed-96b832234/])  
+- LinkedIn: ([Abdelrahman_Said](https://www.linkedin.com/in/abdelrahman-said-mohamed-96b832234/])  
 - Email: abdelrahmanalgamil@gmail.com
 
 ---
@@ -167,4 +160,3 @@ Data Science & Analytics Enthusiast
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-```
