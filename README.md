@@ -1,19 +1,5 @@
-# -Nashville-Housing-Data-Cleanup-SQL-Project-
-A T-SQL pipeline to clean, standardize, and validate Nashville residential property sales data—preparing it for analysis or downstream modeling.
-
 ---
 
-**📌 Project Name**  
-**Nashville-HomeCleanR**
-
-**🔍 Short Description**  
-A T-SQL pipeline to clean, standardize, and validate Nashville residential property sales data—preparing it for analysis or downstream modeling.
-
----
-
-## README.md
-
-```markdown
 # Nashville-HomeCleanR
 
 [![SQL Server](https://img.shields.io/badge/Platform-SQL%20Server-blue)](https://www.microsoft.com/sql-server)  
@@ -64,7 +50,7 @@ Cleaning these at the database level accelerates downstream analytics, reporting
 | PropertyStreet      | NVARCHAR   | Street component                         |
 | PropertyCity        | NVARCHAR   | City component                           |
 | OwnerAddress        | NVARCHAR   | Full owner mailing address               |
-| OwnerStreet, City, State | NVARCHAR | Parsed owner address components       |
+| OwnerStreet, OwnerCity, OwnerState | NVARCHAR | Parsed owner address components       |
 | SalePrice, LandValue, BuildingValue, TotalValue | MONEY | Numeric values |
 | LandUse             | NVARCHAR   | Usage category (e.g. “SINGLE FAMILY”)    |
 | YearBuilt           | INT        | Year constructed                         |
@@ -77,32 +63,19 @@ Cleaning these at the database level accelerates downstream analytics, reporting
 
 ## Cleaning Steps
 
-1. **Standardize SaleDate**  
-   Convert free-form `SaleDate` to `DATE` in `SaleDateConverted`.  
-2. **Impute Missing Addresses**  
-   Use `ParcelID` joins to fill null `PropertyAddress`.  
-3. **Parse Address Components**  
-   Split property and owner addresses into street, city, state.  
-4. **Normalize Boolean Flags**  
-   Map `Y/N` → `Yes/No` in `SoldAsVacant`.  
-5. **Remove Duplicates**  
-   Delete rows where all key fields match.  
-6. **Drop Unused Columns**  
-   Remove original address and staging fields.  
-7. **Standardize LandUse**  
-   Consolidate variations into four categories.  
-8. **Validate YearBuilt**  
-   Flag out-of-range build years (<1800 or >current year).  
-9. **Clean Monetary Fields**  
-   Strip `$`, commas → cast to `MONEY`.  
-10. **Validate Room Counts**  
-    Identify unrealistic bedroom/bath counts.  
-11. **Parse LegalReference**  
-    Extract date and reference number.  
-12. **Data Quality Checks**  
-    Summarize remaining nulls in key columns.  
-13. **Indexing**  
-    Add indexes on `(PropertyStreet, PropertyCity)` and `SaleDateConverted`.
+1. **Standardize SaleDate** – Convert free-form `SaleDate` to `DATE` in `SaleDateConverted`.  
+2. **Impute Missing Addresses** – Use `ParcelID` joins to fill null `PropertyAddress`.  
+3. **Parse Address Components** – Split property and owner addresses into street, city, and state.  
+4. **Normalize Boolean Flags** – Map `Y/N` → `Yes/No` in `SoldAsVacant`.  
+5. **Remove Duplicates** – Delete rows where all key fields match.  
+6. **Drop Unused Columns** – Remove original address and staging fields.  
+7. **Standardize LandUse** – Consolidate variations into four categories.  
+8. **Validate YearBuilt** – Flag out-of-range build years (<1800 or > current year).  
+9. **Clean Monetary Fields** – Strip `$`, commas → cast to `MONEY`.  
+10. **Validate Room Counts** – Identify unrealistic bedroom/bath counts.  
+11. **Parse LegalReference** – Extract date and reference number.  
+12. **Data Quality Checks** – Summarize remaining nulls in key columns.  
+13. **Indexing** – Add indexes on `(PropertyStreet, PropertyCity)` and `SaleDateConverted`.
 
 ---
 
@@ -112,7 +85,7 @@ Cleaning these at the database level accelerates downstream analytics, reporting
 2. Open the T-SQL script `clean_nashville.sql` in SQL Server Management Studio.  
 3. Update the database/schema name if needed.  
 4. Execute step-by-step or run all at once.  
-5. Query `Potfolio_Project.dbo.Nashville_data` for cleaned output.
+5. Query the cleaned table:
 
 ```sql
 SELECT * 
@@ -123,13 +96,15 @@ FROM Potfolio_Project.dbo.Nashville_data;
 
 ## Schema & Performance
 
-- **Indexes**  
+- **Indexes**
   - `idx_PropertyAddress` on `(PropertyStreet, PropertyCity)`  
   - `idx_SaleDate` on `SaleDateConverted`  
-- **Row count before/after deduplication**  
-  - Before: 56477  
-  - After: 56373
-  - Deleted: 102 
+
+- **Row count before/after deduplication**
+  - Before: 56,477  
+  - After: 56,373  
+  - Deleted: 104  
+
 ---
 
 ## Results
@@ -155,11 +130,13 @@ After cleaning, the dataset is:
 
 **Abdelrahman Said Mohamed**  
 Data Science & Analytics Enthusiast  
-- LinkedIn: ([Abdelrahman_Said](https://www.linkedin.com/in/abdelrahman-said-mohamed-96b832234/])  
-- Email: abdelrahmanalgamil@gmail.com
+- 📎 [LinkedIn](https://www.linkedin.com/in/abdelrahman-said-mohamed-96b832234/)  
+- 📧 Email: abdelrahmanalgamil@gmail.com  
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
